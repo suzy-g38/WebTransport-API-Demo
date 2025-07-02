@@ -1,6 +1,9 @@
 export default {
   async fetch(request, env, ctx) {
-    if (request.headers.get("Upgrade") !== "webtransport") {
+    const upgradeHeader = request.headers.get("Upgrade");
+    console.log("Upgrade Header:", upgradeHeader);
+
+    if (upgradeHeader !== "webtransport") {
       return new Response("Expected WebTransport", {
         status: 400,
         headers: {
@@ -21,7 +24,7 @@ export default {
         if (msg === "ping") {
           const pong = new TextEncoder().encode("pong");
           session.datagrams.writable.getWriter().write(pong);
-          console.log("Sent pong back");
+          console.log("Responded with pong");
         }
       }
     }));
