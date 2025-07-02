@@ -1,0 +1,12 @@
+# Local SSL/TLS certificates (if you still have them from local server attempts)
+*.pem
+*.key
+
+# Node.js dependencies
+node_modules/
+
+# Cloudflare Worker specific exclusions
+cloudflare/webtransport-echo-worker/node_modules/
+cloudflare/webtransport-echo-worker/.wrangler/ # Wrangler's local dev server cache
+*.log
+.DS_Store
