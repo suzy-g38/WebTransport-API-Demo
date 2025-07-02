@@ -1,11 +1,13 @@
 // client.js
-const transport = new WebTransport('https://webtransport-echo-worker.webtransport-demo-live.workers.dev/');
+const transport = new WebTransport('https://webtransport-echo-worker.webtransport-demo-live.workers.dev');
+
+console.log("transport", transport);
 await transport.ready;
-console.log('WebTransport connection established.');
+console.log('✅ WebTransport connection established.');
 
 const writer = transport.datagrams.writable.getWriter();
 await writer.write(new TextEncoder().encode('ping'));
-console.log('Sent "ping" to server');
+console.log('📤 Sent "ping" to server');
 
 const reader = transport.datagrams.readable.getReader();
 while (true) {
